@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-    <?php
+   <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+   <?php
 // Connect to database
 $serverName = "LAPTOP-VER9JBS9\SQLEXPRESS";
 $connectionInfo = array("Database"=>"ASMR", "UID"=>"reda1234", "PWD"=>"reda1234");
@@ -173,7 +174,7 @@ sqlsrv_close($conn);
                            <div class="full counter_section margin_bottom_30">
                               <div class="couter_icon">
                                  <div> 
-                                    <i class="fa fa-clock-o blue1_color"></i>
+                                    <i class="fa fa-film blue1_color"></i>
                                  </div>
                               </div>
                               <div class="counter_no">
@@ -188,7 +189,7 @@ sqlsrv_close($conn);
                            <div class="full counter_section margin_bottom_30">
                               <div class="couter_icon">
                                  <div> 
-                                    <i class="fa fa-cloud-download green_color"></i>
+                                    <i class="fa fa-film green_color"></i>
                                  </div>
                               </div>
                               <div class="counter_no">
