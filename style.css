@@ -1,0 +1,490 @@
+/* CSS Styles */
+*{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif ;
+}
+body{
+	background-color: #4e3ef776;
+	color: #eee;
+
+	font-size: 18px;
+	line-height: 1.6;
+	margin: 0;
+    height: auto;
+}
+h1 {
+    /* Header styles */
+	color: #fff;
+	font-size: 36px;
+	text-align: center;
+	margin: 0 0 20px;
+}
+
+.logocontainer {
+	max-width: 1200px;
+	margin: 0 auto;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.card {
+	background-color: #111;
+	padding: 20px;
+	margin-bottom: 20px;
+	border-radius: 10px;
+	/* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); */
+	text-align: center;
+}
+
+.card img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 5px;
+}
+
+.card h2 {
+	color: #fff;
+	font-size: 24px;
+	margin: 10px 0;
+}
+
+.logincontainer {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.card {
+	margin: 20px;
+	padding: 20px;
+	border: 1px solid black;
+	/* box-shadow: 5px 5px 5px grey; */
+	text-align: center;
+	position: relative;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.card:hover {
+	transform: scale(1.1);
+}
+
+.card img {
+	width: 200px;
+	height: 300px;
+	object-fit: cover;
+}
+
+.blur {
+	filter: blur(5px);
+}
+
+
+
+
+.container{
+    margin: 0;
+    padding: 0px;
+}
+
+.select  {
+	margin-top: 15px;
+	margin-left: 50px;
+    /* border: 1px solid; */
+    float: left;
+    border-radius: 10px ;
+	/* padding: 10px 20px; */
+}
+select{
+    background-color: #ffffff;
+    font-weight: bold;
+    width: 200px;
+    color: rgb(0, 0, 0);
+    border-radius: 10px ;
+	padding: 10px 20px;
+}
+select:hover{
+    background-color: #ffffff;
+}
+
+.card-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.card {
+	margin: 10px;
+	text-align: center;
+}
+
+.card img {
+	width: 100%;
+	height: auto;
+	cursor: pointer;
+}
+
+.card h2 {
+	margin-top: 10px;
+}
+h1 {
+    color: #9B59B6;
+    font-size: 36px;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+}
+h1 img {
+    width: 60px;
+    height: 60px;
+    margin-right: 20px;
+    border-radius: 50%;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.2);
+}
+.logininput, input[type=password] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #F6F6F6;
+    color: #777;
+    font-size: 14px;
+}
+.filterbutt{
+    font-weight: bold;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+.filterbutt:hover{
+    background-color: #ffffffa0;
+}
+.logo {
+    width: 100px;
+    height: 100px;
+    background-image: url('asmr-logo.png');
+    background-size: cover;
+    border-radius: 50%;
+    /* box-shadow: 0px 2px 8px rgba(0,0,0,0.2); */
+    margin-bottom: 20px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1;
+    filter: blur(5px);
+}
+		h1 {
+			color: #fff;
+			font-size: 36px;
+			text-align: center;
+			margin: 0 0 20px;
+		}
+
+
+		.card {
+			background-color: #111;
+			padding: 20px;
+			margin-bottom: 20px;
+			border-radius: 10px;
+			/* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); */
+			text-align: center;
+		}
+
+		.card img {
+			max-width: 100%;
+			height: auto;
+			border-radius: 5px;
+		}
+
+		.card h2 {
+			color: #fff;
+			font-size: 24px;
+			margin: 10px 0;
+		}
+		.container {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			align-items: center;
+		}
+		
+		.card {
+			margin: 20px;
+			padding: 20px;
+			border: 1px solid black;
+			/* box-shadow: 5px 5px 5px grey; */
+			text-align: center;
+			position: relative;
+			cursor: pointer;
+			transition: 0.3s;
+		}
+		
+		.card:hover {
+			transform: scale(1.1);
+		}
+		
+		.card img {
+			width: 200px;
+			height: 300px;
+			object-fit: cover;
+		}
+		
+		.blur {
+			filter: blur(5px);
+		}
+		
+		.modal {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.5);
+			z-index: 1;
+		}
+		
+		.card-container {
+    		display: flex;
+    		flex-wrap: wrap;
+    		justify-content: center;
+		}
+
+		.card {
+    		margin: 10px;
+    		text-align: center;
+		}
+
+		.card img {
+    		width: 100%;
+    		height: auto;
+    		cursor: pointer;
+		}
+
+		.card h2 {
+   			margin-top: 10px;
+		}
+.searchbar{
+    width: 500px;
+    padding: 15px;
+    border-radius: 25px;
+}
+.searchdiv{
+    /* margin-left: 32%; */
+    margin-top: 30px;
+    margin-left: 32.5%;
+}
+.searchbutt{
+    margin-top: 10px ;
+    margin-left: 18%;
+    font-size: large;
+    width: 150px;
+    height: 40px;
+    color: rgb(0, 0, 0);
+    border-radius: 25px;
+    background-color: #ffffff;
+    transition: 0.25s;
+    font-weight: bold;
+}
+.searchbutt:hover{
+    background-color: #ffffffc1;
+    cursor: pointer;
+}
+.nextbutt{
+margin-top: 25px;
+margin-bottom: 25px;
+background-color: #ffffff;
+padding: 10px 20px;
+text-decoration: none;
+font-weight: bold;
+color: rgb(0, 0, 0);
+border-radius: 10px;
+transition: 0.5s;
+
+}
+.nextbutt:hover{
+    border-radius: 25px;    
+}
+.logofield{
+	/* border: 5px solid white; */
+    margin-top: 0px;
+	text-align: center;
+	height: auto;
+	/* background-image: linear-gradient(to right , #ffffffb5, rgba(0, 0, 255, 0)); */
+    border: none;
+    border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+.topitem{
+    float: left;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.content-desc {
+	border: white 1px solid;
+	padding: 20px;
+	border-radius: 10px;
+	color:white;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+
+}
+h2{
+	text-shadow: -2px 2px 0 #000,
+	2px 2px 0 #000,
+   2px -2px 0 #000,
+  -2px -2px 0 #000;
+	opacity: 100%;
+	margin: 0px;
+	color: #fff;
+	font-size:7ch;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	text-transform: uppercase;
+}
+
+/* ################# */
+body {
+    background-image: url(cinema1.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.logincontainer {
+    width: 300px;
+    margin: 100px auto;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    color: #000000;
+}
+
+form {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.logininput {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.error {
+    color: red;
+}
+
+.success {
+    color: green;
+}
+
+a {
+    color: #333;
+}
+.loginbutt{
+    padding: 7px 20px;
+    border-radius: 10px;
+    transition: 0.5s;
+    background-color: white;
+    font-weight: bold;
+}
+.loginbutt:hover{
+    cursor: pointer;
+    background-color:  #ffffff69;
+}
+.asmrlogo{
+
+	width: 250px;
+	filter: invert(1);
+}
+.modal {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 1;
+}
+
+.modal-content {
+	padding: 20px;
+	border-radius: 10px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+
+}
+#like-button{
+	border-radius: 20px;
+	padding: 5px 10px;
+	transition: 0.25s;
+	background-color: black;
+	color: white;
+	border: 1px solid white;
+	margin: 5px;
+	width: 50px;
+}
+#like-button:hover{
+	background-color: rgba(121, 108, 108, 0.264);
+	cursor: pointer;
+}
+.iconbutt,.likebutt{
+	transition: 0.25s;
+}
+#like-button:hover .iconbutt{
+	transform: rotate(180deg);
+}
+#like-button:hover .likebutt{
+	transform: rotate(360deg);
+}
+.logo-login{
+	border: none;
+	text-align: center;
+}
+.row{
+	margin-left: 100px;
+}
