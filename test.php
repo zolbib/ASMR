@@ -1,99 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      
+   <style>
+   .user-table {
+      width: 100%;
+      border-collapse: collapse;
+   }
+
+   .user-table th,
+   .user-table td {
+      padding: 10px;
+      border: 1px solid #ccc;
+   }
+
+   .user-table th {
+      background-color: #00000078;
+   }
+
+   .user-table input[type="text"] {
+      width: 100%;
+      padding: 5px;
+   }
+
+   .user-table input[type="submit"] {
+      background-color: black;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+   }
+
+   .user-table input[type="submit"]:hover {
+      background-color: #00000078;
+   }
+
+   .success-message {
+      color: green;
+      font-weight: bold;
+      margin-bottom: 10px;
+   }
+
+   .error-message {
+      color: red;
+      font-weight: bold;
+      margin-bottom: 10px;
+   }
+</style>
+   <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
    <?php
-         // Connect to the database
-         $serverName = "LAPTOP-VER9JBS9\SQLEXPRESS";
-         $connectionInfo = array("Database"=>"ASMR", "UID"=>"reda1234", "PWD"=>"reda1234");
-         $conn = sqlsrv_connect($serverName, $connectionInfo);
+// Connect to database
+$serverName = "LAPTOP-VER9JBS9\SQLEXPRESS";
+$connectionInfo = array("Database"=>"ASMR", "UID"=>"reda1234", "PWD"=>"reda1234");
+$conn = sqlsrv_connect($serverName, $connectionInfo);
+if (!$conn) {
+    die("<p>Connection failed: " . sqlsrv_errors() . "</p>");
+}
 
 
-         $list = array("Person","Serie","Genre");
-         $output = array();
-         foreach ($list as $item) {
-            $sql = "SELECT count(*) FROM $item";
-            $stmt = sqlsrv_query($conn, $sql);
-            if ($stmt === false) {
-               die(print_r(sqlsrv_errors(), true));
-            }
+$list = array("Person","Serie","Genre");
+$output = array();
+foreach ($list as $item) {
+    $sql = "SELECT count(*) FROM  $item";
+$stmt = sqlsrv_query($conn, $sql);
+if ($stmt === false) {
+    die(print_r(sqlsrv_errors(), true));
+}
 
-            // Fetch the count from the result
-            if (sqlsrv_fetch($stmt) === false) {
-               die(print_r(sqlsrv_errors(), true));
-            }
+// Fetch the count from the result
+if (sqlsrv_fetch($stmt) === false) {
+    die(print_r(sqlsrv_errors(), true));
+}
 
-            // Store the count in a variable
-            $count = sqlsrv_get_field($stmt, 0);
+// Store the count in a variable
+$count = sqlsrv_get_field($stmt, 0);
 
-            array_push($output, $count);
-         }
-         $sql = "SELECT * FROM Serie";
-         $stmt = sqlsrv_query($conn, $sql);
-         if ($stmt === false) {
-            die("<p>SQL query execution failed: " . print_r(sqlsrv_errors(), true) . "</p>");
-         }
-         function displayElements($conn, $searchTerm = '', $sortBy = '') {
-            $sql = "SELECT * FROM serie";
-    
-            // Add search condition
-            if (!empty($searchTerm)) {
-                $sql .= " WHERE nom LIKE '%$searchTerm%'";
-            }
-    
-            // Add sorting condition
-            if (!empty($sortBy)) {
-                $sql .= " ORDER BY $sortBy";
-            }
-    
-            $stmt = sqlsrv_query($conn, $sql);
-            
-            while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-               $id = $row['id_serie'];
-               $title = $row['nom'];
-               $description = $row['description'];
-               $image = "data:image;base64," . base64_encode(file_get_contents($row['cover']));
-               echo '<table>';
-         echo '<tr>';
-         echo '<td>';
-         echo '<table>';
-         echo '<tr>';
-         echo '<td><img class="img-responsive" src="' . $image . '" alt="' . $title . '"></td>';
-         echo '</tr>';
-         echo '</table>';
-         echo '</td>';
-         echo '</tr>';
-         echo '<tr>';
-         echo '<td>';
-         echo '<table>';
-         echo '<form action="" method="post" enctype="multipart/form-data">';
-         echo '<input type="hidden" name="id" value= class="inputfield""' . $id . '">';
-         echo '<tr>';
-         echo '<td><label>Title:</label></td>';
-         echo '<td><input type="text" name="title" class="inputfield" value="' . $title . '" required></td>';
-         echo '</tr>';
-         echo '<tr>';
-         echo '<td><label>Description:</label></td>';
-         echo '<td><textarea name="description" required rows="10" cols="30" ">' . $description . '</textarea></td>';
-         echo '</tr>';
-         echo '<tr>';
-         echo '<td><label>Cover Image:</label></td>';
-         echo '<td><input type="file" name="cover"  class="filebutt"></td>';
-         echo '</tr>';
-         echo '<tr>';
-         echo '<td colspan="2"><input type="submit" name="update" value="Update" class="updatebutt"></td>';
-         echo '</tr>';
-         echo '</form>';
-         echo '</table>';
-         echo '</td>';
-         echo '</tr>';
-         echo '</table>';
-         
+array_push($output, $count);
 
-            }
-            }
+}
 
-      ?>
+
+
+
+
+// Close connection
+sqlsrv_free_stmt($stmt);
+sqlsrv_close($conn);
+
+    ?>
       <!-- basic -->
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -148,11 +141,15 @@
                <div class="sidebar_blog_2">
                   <h4>Admin Panel</h4>
                   <ul class="list-unstyled components">
+
+                     <li><a href="welcome.php"><i class="fa fa-cog yellow_color"></i> <span>Welcome</span></a></li>  
+
                      <li class="active"><a href="admin.php"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a></li>
 
-                     <li><a href="welcome.php"><i class="fa fa-cog yellow_color"></i> <span>Welcome</span></a></li>
 
-                     <li><a href="#"><i class="fa fa-bar-chart-o green_color"></i><span>Manage Users</span></a></li>
+
+
+                     <li><a href="manage_users.php"><i class="fa fa-bar-chart-o green_color"></i><span>Manage Users</span></a></li>
                      <li >
                         <a href="#element" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-bar-chart-o green_color"></i><span>Manage Series</span></a>
                         <ul class="collapse list-unstyled components" id="element">
@@ -198,76 +195,116 @@
                      <div class="row column_title">
                         <div class="col-md-12">
                            <div class="page_title">
-                              <h2>ModifySeries</h2>
+                              <h2>Manage Users</h2>
                            </div>
                         </div>
                      </div>
-                     <fieldset>
-                     <div class="row">
-                        <?php    
-                        displayElements($conn);
-?>
-                    
+                     <div class="row column1">
+                     <div class="col-md-12">
+   <?php
+   // Connect to the database
+   $serverName = "LAPTOP-VER9JBS9\\SQLEXPRESS";
+   $connectionInfo = array("Database" => "ASMR", "UID" => "reda1234", "PWD" => "reda1234");
+   $conn = sqlsrv_connect($serverName, $connectionInfo);
+   if (!$conn) {
+       die("<p>Connection failed: " . sqlsrv_errors() . "</p>");
+   }
+   
+   // Function to update user information
+   function updateUser($conn, $id, $name, $user, $status)
+   {
+       $sql = "UPDATE Person SET nom = ?, utilisateur = ?, status = ? WHERE id_person = ?";
+       $params = array($name, $user, $status, $id);
+       $stmt = sqlsrv_query($conn, $sql, $params);
+   
+       // Handle update success or failure
+       return $stmt !== false;
+   }
+   
+   // Check if the form is submitted for user update
+   if (isset($_POST['update_user'])) {
+       $id = $_POST['user_id'];
+       $name = $_POST['name'];
+       $user = $_POST['email'];
+       $status = $_POST['status'];
+   
+       // Update user information
+       $result = updateUser($conn, $id, $name, $user, $status);
+   
+       if ($result) {
+           echo "<p class='success-message'>User updated successfully.</p>";
+       } else {
+           echo "<p class='error-message'>Failed to update user.</p>";
+       }
+   }
+   
+   // Fetch users from the database
+   $sql = "SELECT * FROM Person";
+   $stmt = sqlsrv_query($conn, $sql);
+   
+   // Display users in a table with editable fields
+   echo "<form method='post' action='test.php'>";
+   echo "<table class='user-table'>";
+   echo "<tr><th>ID</th><th>Name</th><th>Email</th><th>Status</th><th>Action</th></tr>";
+   while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+       echo "<tr>";
+       echo "<td>" . $row['id_person'] . "</td>";
+       echo "<td><input type='text' name='name' value='" . $row['nom'] . "'></td>";
+       echo "<td><input type='text' name='email' value='" . $row['utilisateur'] . "'></td>";
+       echo "<td>";
+       echo "<select name='status'>";
+       
+       // Fetch the options for the status column
+       $statusOptions = array("user", "admin");
+   
+       foreach ($statusOptions as $option) {
+           $selected = ($option == $row['status']) ? "selected" : "";
+           echo "<option value='$option' $selected>$option</option>";
+       }
+       
+       echo "</select>";
+       echo "</td>";
+       echo "<td>
+           <input type='hidden' name='user_id' value='" . $row['id_person'] . "'>
+           <input type='submit' name='update_user' value='Update'>
+           </td>";
+       echo "</tr>";
+   }
+   echo "</table>";
+   echo "</form>";
+   
+   // Close the database connection
+   sqlsrv_free_stmt($stmt);
+   sqlsrv_close($conn);
+   ?>
+</div>
 
-   </div>
-                        </fieldset>
+                     </div>
                   </div>
                </div>
-            </div>
             </fieldset>
-         </div>
-      </div>
-      <style>
-         
-         tr,td{
-            margin: 0px;
-         }
-
-  textarea,.inputfield{
-            background-image: url("images/layout_img/pattern_h.png");
-        background: #00000078;
-        color: white;
-        border: none;
-        /* padding: 10px; */
-
-     }
-     .updatebutt{
-   background-image: url("images/layout_img/pattern_h.png");
-   padding: 5px 10px;
-   background: #00000078;
-color: white;
-margin-left: 100px;
-margin-top: 10px;
-
-}
-.filebutt{
-   background-image: url("images/layout_img/pattern_h.png");
-   padding: 5px 10px;
-   color: white;  
-}
-
-</style>
-      <!-- js section -->
-      <!-- jQuery library -->
+      <!-- jQuery -->
       <script src="js/jquery.min.js"></script>
-      <!-- select bootstrap -->
-      <script src="js/bootstrap-select.js"></script>
-      <!-- bootstrap js -->
+      <script src="js/popper.min.js"></script>
       <script src="js/bootstrap.min.js"></script>
+      <!-- wow animation -->
+      <script src="js/animate.js"></script>
+      <!-- select country -->
+      <script src="js/bootstrap-select.js"></script>
+      <!-- owl carousel -->
+      <script src="js/owl.carousel.js"></script> 
       <!-- chart js -->
-      <script src="js/chart.js"></script>
-      <!-- fa js -->
-      <script src="js/fa.js"></script>
-      <!-- sidebar menu  -->
-      <script src="js/metisMenu.js"></script>
-      <!-- map -->
-      <script src="https://maps.googleapis.com/maps/api/js"></script>
-      <script src="js/jquery-ui.js"></script>
-      <script src="js/dashboard.js"></script>
-      <!-- map -->
-      <script src="js/google_map.js"></script>
+      <script src="js/Chart.min.js"></script>
+      <script src="js/Chart.bundle.min.js"></script>
+      <script src="js/utils.js"></script>
+      <script src="js/analyser.js"></script>
+      <!-- nice scrollbar -->
+      <script src="js/perfect-scrollbar.min.js"></script>
+      <script>
+         var ps = new PerfectScrollbar('#sidebar');
+      </script>
       <!-- custom js -->
+      <script src="js/chart_custom_style1.js"></script>
       <script src="js/custom.js"></script>
-
    </body>
 </html>

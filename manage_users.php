@@ -1,6 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
+   <style>
+   .user-table {
+      width: 100%;
+      border-collapse: collapse;
+   }
+
+   .user-table th,
+   .user-table td {
+      padding: 10px;
+      border: 1px solid #ccc;
+   }
+
+   .user-table th {
+      background-color: #00000078;
+   }
+
+   .user-table input[type="text"] {
+      width: 100%;
+      padding: 5px;
+   }
+
+   .user-table input[type="submit"] {
+      background-color: black;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+   }
+
+   .user-table input[type="submit"]:hover {
+      background-color: #00000078;
+   }
+
+   .success-message {
+      color: green;
+      font-weight: bold;
+      margin-bottom: 10px;
+   }
+
+   .error-message {
+      color: red;
+      font-weight: bold;
+      margin-bottom: 10px;
+   }
+</style>
    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
    <?php
 // Connect to database
@@ -150,63 +195,94 @@ sqlsrv_close($conn);
                      <div class="row column_title">
                         <div class="col-md-12">
                            <div class="page_title">
-                              <h2>Dashboard</h2>
+                              <h2>Manage Users</h2>
                            </div>
                         </div>
                      </div>
                      <div class="row column1">
-                        <div class="col-md-6 col-lg-3">
-                           <div class="full counter_section margin_bottom_30">
-                              <div class="couter_icon">
-                                 <div> 
-                                    <i class="fa fa-user yellow_color"></i>
-                                 </div>
-                              </div>
-                              <div class="counter_no">
-                                 <div>
-                                    <p class="total_no"><?php echo $output[0] ?> </p>
-                                    <p class="head_couter">Users</p>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                           <div class="full counter_section margin_bottom_30">
-                              <div class="couter_icon">
-                                 <div> 
-                                    <i class="fa fa-film blue1_color"></i>
-                                 </div>
-                              </div>
-                              <div class="counter_no">
-                                 <div>
-                                    <p class="total_no"><?php echo $output[1] ?></p>
-                                    <p class="head_couter">Series</p>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                           <div class="full counter_section margin_bottom_30">
-                              <div class="couter_icon">
-                                 <div> 
-                                    <i class="fa fa-film green_color"></i>
-                                 </div>
-                              </div>
-                              <div class="counter_no">
-                                 <div>
-                                    <p class="total_no"><?php echo $output[2] ?></p>
-                                    <p class="head_couter">Genres</p>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
+                     <div class="col-md-12">
+   <?php
+   // Connect to the database
+   $serverName = "LAPTOP-VER9JBS9\\SQLEXPRESS";
+   $connectionInfo = array("Database" => "ASMR", "UID" => "reda1234", "PWD" => "reda1234");
+   $conn = sqlsrv_connect($serverName, $connectionInfo);
+   if (!$conn) {
+       die("<p>Connection failed: " . sqlsrv_errors() . "</p>");
+   }
+   
+   // Function to update user information
+   function updateUser($conn, $id, $name, $user, $status)
+   {
+       $sql = "UPDATE Person SET nom = ?, utilisateur = ?, status = ? WHERE id_person = ?";
+       $params = array($name, $user, $status, $id);
+       $stmt = sqlsrv_query($conn, $sql, $params);
+   
+       // Handle update success or failure
+       return $stmt !== false;
+   }
+   
+   // Check if the form is submitted for user update
+   if (isset($_POST['update_user'])) {
+       $id = $_POST['user_id'];
+       $name = $_POST['name'];
+       $user = $_POST['email'];
+       $status = $_POST['status'];
+   
+       // Update user information
+       $result = updateUser($conn, $id, $name, $user, $status);
+   
+       if ($result) {
+           echo "<p class='success-message'>User updated successfully.</p>";
+       } else {
+           echo "<p class='error-message'>Failed to update user.</p>";
+       }
+   }
+   
+   // Fetch users from the database
+   $sql = "SELECT * FROM Person";
+   $stmt = sqlsrv_query($conn, $sql);
+   
+   // Display users in a table with editable fields
+   echo "<form method='post' action='manage_users.php'>";
+   echo "<table class='user-table'>";
+   echo "<tr><th>ID</th><th>Name</th><th>Utilisateur</th><th>Status</th><th>Action</th></tr>";
+   while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+       echo "<tr>";
+       echo "<td>" . $row['id_person'] . "</td>";
+       echo "<td><input type='text' name='name' value='" . $row['nom'] . "'></td>";
+       echo "<td><input type='text' name='email' value='" . $row['utilisateur'] . "'></td>";
+       echo "<td>";
+       echo "<select name='status'>";
+       
+       // Fetch the options for the status column
+       $statusOptions = array("user", "admin");
+   
+       foreach ($statusOptions as $option) {
+           $selected = ($option == $row['status']) ? "selected" : "";
+           echo "<option value='$option' $selected>$option</option>";
+       }
+       
+       echo "</select>";
+       echo "</td>";
+       echo "<td>
+           <input type='hidden' name='user_id' value='" . $row['id_person'] . "'>
+           <input type='submit' name='update_user' value='Update'>
+           </td>";
+       echo "</tr>";
+   }
+   echo "</table>";
+   echo "</form>";
+   
+   // Close the database connection
+   sqlsrv_free_stmt($stmt);
+   sqlsrv_close($conn);
+   ?>
+</div>
 
                      </div>
-               <!-- end dashboard inner -->
-            </div>
-         </div>
-      </div>
-   </fieldset>
+                  </div>
+               </div>
+            </fieldset>
       <!-- jQuery -->
       <script src="js/jquery.min.js"></script>
       <script src="js/popper.min.js"></script>

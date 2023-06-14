@@ -101,7 +101,7 @@ sqlsrv_close($conn);
 
 
 
-                     <li><a href="#"><i class="fa fa-bar-chart-o green_color"></i><span>Manage Users</span></a></li>
+                     <li><a href="manage_users.php"><i class="fa fa-bar-chart-o green_color"></i><span>Manage Users</span></a></li>
                      <li >
                         <a href="#element" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-bar-chart-o green_color"></i><span>Manage Series</span></a>
                         <ul class="collapse list-unstyled components" id="element">

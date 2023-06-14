@@ -91,7 +91,7 @@ if ($stmt === false) {
                     <ul class="list-unstyled components">
                         <li class="active"><a href="admin.php"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a></li>
                         <li><a href="welcome.php"><i class="fa fa-cog yellow_color"></i> <span>Welcome</span></a></li>
-                        <li><a href="#"><i class="fa fa-bar-chart-o green_color"></i><span>Manage Users</span></a></li>
+                        <li><a href="manage_users.php"><i class="fa fa-bar-chart-o green_color"></i><span>Manage Users</span></a></li>
                         <li>
                             <a href="#element" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-bar-chart-o green_color"></i><span>Manage Series</span></a>
                             <ul class="collapse list-unstyled components" id="element">
