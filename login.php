@@ -34,7 +34,6 @@
 				}
 				if (isset($_GET['success']) && $_GET['success'] == 1) {
 					echo '<p style="color: green;">Account created successfully, login now!</p>';
-
 				}
 			?>
 
