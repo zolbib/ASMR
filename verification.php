@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$serverName = "LAPTOP-VER9JBS9\SQLEXPRESS"; // serverName\instanceName
+$serverName = "ASUS\SQLEXPRESS"; // serverName\instanceName
 $connectionInfo = array("Database"=>"ASMR", "UID"=>"reda1234", "PWD"=>"reda1234");
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 
@@ -45,6 +45,8 @@ if (empty($person_row)) {
 $id_person = $person_row['id_person'];
 
 $_SESSION['id_person']=$person_row['id_person'];
+$_SESSION['user_role']=$person_row['user_role'];
+
 // SQL query to check if the user exists in Serie_liked table
 $sql_liked_check = "SELECT * FROM Serie_liked WHERE id_person = ?";
 $params_liked_check = array($id_person);
@@ -67,7 +69,10 @@ while ($row_liked_check = sqlsrv_fetch_array($stmt_liked_check, SQLSRV_FETCH_ASS
 }
 
 // Check if the user exists in Serie_liked table
-if ($liked_rows > 0) {
+if ($_SESSION['user_role'] == 'admin'){
+    header("location: admin.php");
+}
+elseif ($liked_rows > 0) {
     unset($_SESSION['error']);
     header("location: welcome.php");
     exit(); // Stop executing the rest of the code

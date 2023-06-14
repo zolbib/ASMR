@@ -20,7 +20,7 @@
 				<option value="">All genres</option>
 				<?php
 				// Connect to database
-				$serverName = "LAPTOP-VER9JBS9\SQLEXPRESS";
+				$serverName = "ASUS\SQLEXPRESS";
 				$connectionInfo = array("Database"=>"ASMR", "UID"=>"reda1234", "PWD"=>"reda1234");
 				$conn = sqlsrv_connect($serverName, $connectionInfo);
 				if (!$conn) {
@@ -49,7 +49,7 @@
 		</div>
 		<?php
 // Connect to database
-$serverName = "LAPTOP-VER9JBS9\SQLEXPRESS";
+$serverName = "ASUS\SQLEXPRESS";
 $connectionInfo = array("Database"=>"ASMR", "UID"=>"reda1234", "PWD"=>"reda1234");
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 
